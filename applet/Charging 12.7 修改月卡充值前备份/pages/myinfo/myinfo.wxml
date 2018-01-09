@@ -1,0 +1,59 @@
+<!--pages/myinfo/myinfo.wxml-->
+<view class='container'>
+  <view class='header'>
+    <image class='nav_bg' src='../../images/myinfo/Nav-Bar@3x.png'></image>
+    <view class='touxiang_info'>
+      <view class='tx_img'>
+       <image src='{{tx_img}}'></image> 
+      </view>
+      <view class='phone'>{{phone}}</view>
+      <!-- <image class='modifity' src='../../images/myinfo/modification@3x.png'></image> -->
+    </view>
+  </view>
+  <view class='content'>
+    <view class='my_wallet'>
+    <image class='wallet_img' src='../../images/myinfo/purse@3x.png'></image>
+    钱包
+    </view>
+
+    <view class='my_list' wx:for='{{xq_list}}'>
+      <view class='list_left'>
+        <view class='xq_name'>{{item.card_name}}</view>
+        <view class='day_num'>剩余<label class='num'>{{item.remain_days}}</label>天</view>
+      </view>
+      <view class='list_right'>
+        <view class='go_recharge' bindtap='go_recharge'>去续费</view>
+      </view>
+    </view>
+
+      <view class='my_list'>
+        <view class='list_left'>
+          <view class='xq_name'>通用余额</view>
+          <view class='day_num'><label class='num'>{{money}}</label>元(按次收费)</view>
+        </view>
+        <view class='list_right'>
+         <view class='go_recharge' bindtap='go_recharge'>去续费</view>
+        </view>
+      </view>
+      
+      <view class='clearboth'></view>
+      
+  </view>
+  <view class='footers'>
+  暂无
+  </view>
+  <view>
+    <view class='footer'>
+     <view class="weui-cells weui-cells_after-title">
+            <navigator url="../myrechargelog/myrechargelog"  class="weui-cell weui-cell_access" hover-class="weui-cell_active" open-type="navigate">
+                <view class="weui-cell__bd">充电记录</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access">{{is_charging}}</view>
+            </navigator>
+             <navigator url="../wallet/wallet"  class="weui-cell weui-cell_access" hover-class="weui-cell_active" open-type="navigate">
+                <view class="weui-cell__bd">充值明细</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+      </view> 
+    </view> 
+  </view>
+</view>

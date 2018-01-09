@@ -1,0 +1,68 @@
+<!--pages/recharge/recharge.wxml-->
+<view class='container' wx:if='{{is_no==1}}'>
+  <!-- <view class='header'>
+    <view class='header_top'>
+    <label class='xt'></label><label class='balance'>余额 <label class='yuan'>(元)</label></label><label class='xt'></label>
+    </view>
+    <view class='money'>
+      {{money}}
+    </view>
+  </view> -->
+  <view class='content'>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" wx:for="{{recharge_list}}" data-select='{{checked}}'>
+        <radio value="{{item.mid}}" checked="{{item.checked}}"/>{{item.card_type}}{{item.card_money}}元
+        <view class='tit'>（从购买日起，{{item.useful_days}}天内有效，每日可用{{item.user_times}}次）</view>
+      </label>
+    </radio-group>
+  </view>
+  <view class='footer'>
+    <view class='recharge_btn btn'  bindtap='recharge_btn'>购  买</view>
+    <!-- <view class='footer_tit'>
+    <image class='dot' src='../../images/recharge/dot@3x.png'></image>
+    把电源拔下，或者充电满之后，会自动结束充电
+    </view>
+    <view class='footer_tit'>
+    <image class='dot' src='../../images/recharge/dot@3x.png'></image>
+    也可在小程序上进行停止充电操作。
+    </view> -->
+  </view>
+</view>
+
+
+<view class='container' wx:if='{{is_no==2}}'>
+  <view class='header headers'>
+    <view class='header_top'>
+    <label class='xt'></label><label class='balance'>余额 <label class='yuan'>(元)</label></label><label class='xt'></label>
+    </view>
+    <view class='money'>
+      {{money}}
+    </view>
+  </view>
+  <view class='hx'></view>
+  <view class='contents'>
+    <view class='tit'>充值金额</view>
+      <block wx:for='{{num_moneylist}}'>
+        <view class='lists'  bindtap='select_recharge' data-id='{{index}}' data-cid='{{item.id}}'>
+          <view class='num_list select_item' wx:if='{{recharge_id == index}}'>
+            <image class='select_src' src='../../images/recharge/Select-the-box@3x.png'></image>
+            <label class='num_color' style='color:{{num_color}}'>{{item.money}}元</label>
+          </view> 
+          <view class='num_list' wx:else>
+            <label >{{item.money}}元</label>
+          </view>
+      </view>
+       </block>
+  </view>
+  <view class='footer footers'>
+    <view class='recharge_btn btn'  bindtap='recharge_cash_btn'>充  值</view>
+    <view class='footer_tit'>
+    <image class='dot' src='../../images/recharge/dot@3x.png'></image>
+    把电源拔下，或者充电满之后，会自动结束充电
+    </view>
+    <view class='footer_tit'>
+    <image class='dot' src='../../images/recharge/dot@3x.png'></image>
+    也可在小程序上进行停止充电操作。
+    </view>
+  </view>
+</view>

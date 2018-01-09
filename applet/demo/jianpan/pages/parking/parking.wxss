@@ -1,0 +1,45 @@
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url(http://longmen-1251225286.costj.myqcloud.com/parking_bg.png) top center;
+  background-size: 100%;
+}
+
+/*刷新时间*/
+.nowdate{
+  position: relative;
+  top: 60rpx;
+  text-align: center;
+  font-size: 22rpx;
+  font-family: "宋体";
+  color: #babfc2;
+}
+
+/*停车场信息*/
+.title{
+  position: relative;
+  top: 250rpx;
+  text-align: center;
+}
+.title_area{
+  font-size: 28rpx;
+  color: #8b9397;
+  font-family: "宋体";
+  line-height: 48rpx;
+}
+.title_now{
+  font-size: 48rpx;
+  font-family: "微软雅黑";
+  color: #60656e;
+  margin: 10rpx;
+  font-weight: bold;
+  line-height: 77.16rpx;
+}
+.paiking_num{
+  font-size: 94rpx;
+  color: #ff7149;
+  font-family: "Arial";
+  font-weight: bold;
+  margin-top: 156rpx;
+}

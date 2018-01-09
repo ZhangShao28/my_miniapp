@@ -1,0 +1,189 @@
+/**index.wxss**/
+@import '../switch/switch.wxss';
+
+.border{
+  display: inline-block;
+  border-right: 1px solid #d9d9d9;
+  height:100rpx;
+}
+.con-list navigator{
+  display:inline;
+}
+
+.container .header,.containers .header{
+  padding-right: 30rpx;
+  padding-top: 20rpx;
+  font-size: 30rpx;
+  position: relative;
+  z-index: 1;
+}
+.container .xiaoqu-name,.containers .xiaoqu-name{
+  text-align: center;
+  clear: both;
+  padding-top: 40rpx;
+  padding-left: 80rpx;
+  font-size: 40rpx;
+  color: #333;
+}
+.rule{
+  color: #fff;
+  float: right;
+}
+.m-left-5{
+  margin-left:5rpx; 
+}
+
+.container .bgimage{
+  width: 750rpx;
+  height: 318rpx;
+  position: absolute;
+}
+.container .xiaoqu-name .jt,.containers .xiaoqu-name .jt{
+  width: 26rpx;
+  height: 15rpx;
+  vertical-align: middle
+}
+.content{
+    margin: 128rpx 20rpx 20rpx 20rpx;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 220rpx
+}
+.content .con-list{
+  background: #fff;
+  box-shadow: 0px 1px 3px #d9d9d9;
+  border-radius: 4px;
+  margin-bottom: 20rpx;
+  width: 711rpx;
+  min-height: 272rpx
+}
+.content .con-list .con-list-head image{
+  vertical-align: middle;
+  margin-right: 10rpx
+}
+.content .con-list .con-list-head{
+  padding: 18rpx 20rpx 18rpx 34rpx;
+  border-bottom: 1px dotted #d9d9d9;
+  font-size: 38rpx;
+}
+
+.content .con-list .con-list-head .jt{
+  width: 15rpx;
+  height: 26rpx;
+  float: right;
+  margin-top: 17rpx;
+}
+.content .con-list .con-list-head .loca{
+  width: 35rpx;
+  height: 45rpx;
+}
+.content .con-list .con-list-left,.content .con-list .con-list-right{
+  width:49%;
+  display: inline-block;
+  text-align: center;
+  padding: 40rpx 0;
+}
+.content .con-list .con-list-left .num,.content .con-list .con-list-right .num{
+  font-size: 50rpx;
+}
+.content .con-list .con-list-left .tit,.content .con-list .con-list-right .tit{
+  font-size: 26rpx;
+}
+.content .con-list .con-list-left .use,.content .con-list .con-list-right .use{
+  font-size: 28rpx;
+  display:block;
+  color: #666;
+}
+.content .con-list .con-list-left .use .imgsize,.content .con-list .con-list-right .use .imgsize{
+  vertical-align: middle
+}
+.content .con-list .con-list-left .imgsize,.content .con-list .con-list-right .imgsize{
+  width:19rpx;height:28rpx
+}
+.content .con-list .con-list-bottom{
+  font-size: 30rpx;
+  float: right;
+  margin:0 30rpx 10rpx 0; 
+}
+.content .con-list .con-list-bottom .num{
+  height: 41rpx;
+  line-height: 41rpx;
+}
+.content .con-list .con-list-bottom .tit{
+  position: relative;
+  top: -10rpx;
+  margin-right: 10rpx
+}
+.bottoms{
+  text-align: center;
+  margin-top: 36rpx;
+  height: 220rpx;
+  width: 100%;
+  /* margin-bottom: 20rpx; */
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  z-index: 11;
+  border-top: 1rpx solid #e5e5e5
+}
+.scanBtn{
+  width:401rpx;
+  height:111rpx;
+  position: relative;
+  left: 41rpx;
+  top:50rpx; 
+}
+.bottoms .myInfo{
+  /* display: inline-block; */
+  width:81rpx;
+  height:81rpx;
+  position: relative;
+
+  float: right;
+  right: 30rpx;
+  top:70rpx 
+
+}
+.bottoms .myInfo .myicon{
+  width:81rpx;
+  height:81rpx; 
+
+  }
+.bottoms .myInfo .dot{
+  width:15rpx;
+  height:15rpx; 
+  position: absolute;
+  right: -5rpx;
+  top: -5rpx
+}
+/*附近没有充电设备*/
+.containers{
+  height:100%;
+  color:#333;
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  box-sizing:border-box;
+}
+.containers .no_electry{
+  width: 67rpx;
+  height: 118rpx
+}
+.containers .no_tit{
+  color: #999;
+  font-size: 32rpx
+}
+.containers .no_src{
+  width: 681rpx;
+  height: 99rpx
+}
+.containers .no_top{
+  margin:263rpx auto 41rpx auto;
+}
+.containers .no_bottom{
+  margin:558rpx auto auto;
+}
+button{
+  width: 200rpx;
+  height: 50rpx
+}

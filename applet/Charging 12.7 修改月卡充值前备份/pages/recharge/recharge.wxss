@@ -1,0 +1,130 @@
+/* pages/recharge/recharge.wxss */
+.header{
+  height: 270rpx;
+  background: #fff;
+  border-top: 1rpx solid ccc;
+  text-align: center
+}
+.header .balance{
+  font-size: 28rpx;
+  margin: 73rpx 40rpx;
+  color: #666
+}
+.header .header_top{
+  margin-top: 30rpx
+}
+.header .balance .yuan{
+  font-size: 24rpx
+}
+.header .header_top .xt{
+  border-top: 1rpx solid #e5e5e5;
+  width: 132rpx;
+  display: inline-block;
+  position: relative;
+  top: -8rpx
+}
+.header .money{
+  font-size: 88rpx;
+  color: #FFAF05;
+}
+.content{
+  height: 827rpx;
+  background: #fff;
+  margin-top: 40rpx;
+  padding-left: 45rpx;
+
+}
+.content .radio{
+  display: block;
+  font-size: 36rpx;
+  height: 205rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+.content .radio:nth-child(4){
+  border-bottom: none;
+}
+.content .radio radio{
+  margin-top: 60rpx;
+  /* width: 35rpx;
+  height: 35rpx */
+}
+.content .tit{
+  font-size: 26rpx;
+  color: #999;
+  margin-left: 44rpx;
+  margin-top: 10rpx
+}
+.footer{
+  text-align: center;
+  padding-bottom: 48rpx
+}
+.footer .recharge_btn{
+  width: 640rpx;
+  margin: 50rpx auto 20rpx auto;
+}
+.footer .footer_tit{
+  text-align: left;
+  font-size: 26rpx;
+  color: #999;
+  margin-left: 54rpx;
+  margin-bottom: 20rpx
+}
+.footer .footer_tit .dot{
+  width: 11rpx;
+  height: 11rpx
+}
+.contents{
+  background: #fff;
+  height: 100%;
+  padding: 29rpx 36rpx;
+  border-top: 1rpx solid #e5e5e5; 
+}
+.headers{
+  padding-bottom: 81rpx
+}
+/* .hx{
+   border-top: 1rpx solid #e5e5e5; 
+  width: 90%;
+  margin: 0 auto;
+} */
+.contents .num_list{
+  width: 211rpx;
+  height: 101rpx;
+  line-height: 101rpx;
+  border: 1rpx solid #e5e5e5;
+  border-radius: 2rpx;
+  display: inline-block;
+  margin-top: 29rpx;
+  text-align: center;
+  font-size: 42rpx
+}
+.contents .lists{
+  display: inline-block
+}
+.contents .lists:nth-child(3n-3){
+  margin-left: 19rpx;
+  margin-right: 19rpx
+}
+.contents .num_list:nth-child(3n-3){
+  margin-left: 19rpx;
+  margin-right: 19rpx
+}
+.contents .tit{
+  font-size: 32rpx;
+  color: #666
+}
+.contents .select_item{
+   position: relative;
+   border: 1rpx solid #FFAF05;
+}
+
+.contents .select_src{
+  width: 42rpx;
+  height: 38rpx;
+  position: absolute;
+  right: 0;
+  bottom: 0
+}
+.footers{
+  background: #fff
+}

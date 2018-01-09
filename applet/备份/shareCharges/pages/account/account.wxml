@@ -1,0 +1,18 @@
+<!--pages/account/account.wxml-->
+<view class='container' >
+    <image class='end_img' src='../../images/account/Settlement-icon@3x.png'></image>
+    <view class='num_tit'><label class='xt'></label><label class='tit'>{{end_tits}}</label><label class='xt'></label></view>
+    <view class='num'>{{num}}<label>{{end_tit}}</label></view>
+      <view class='time' wx:if='{{state==2}}'>
+        <view class='time_tit'>本次支付</view>
+        <view class='time_num'> 
+        <label>1</label>元</view>
+      </view>
+      <view class='time '>
+        <view class='time_tit'>本次充电</view>
+        <view class='time_num'> 
+        <label>05</label>小时<label>09</label>分<label>32</label>秒
+        </view>
+      </view>
+      <image class='go_recharge' bindtap='go_recharge' src='../../images/account/To-renew@3x.png'></image>
+</view>

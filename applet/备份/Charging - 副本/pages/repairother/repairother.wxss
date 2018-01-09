@@ -1,0 +1,18 @@
+/* pages/repairother/repairother.wxss */
+@import '../repair/repair';
+
+.other textarea{
+  background: #f8f8f8;
+  border-radius: 4rpx;
+  margin: 0 auto 20rpx auto;
+  padding:10rpx;
+  width: 90%;
+}
+.footer{
+  height: 300rpx;
+  background: #f3f3f3;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0  
+}

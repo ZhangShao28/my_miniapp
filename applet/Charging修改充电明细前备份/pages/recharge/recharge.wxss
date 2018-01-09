@@ -1,0 +1,190 @@
+/* pages/recharge/recharge.wxss */
+.header{
+  height: 270rpx;
+  background: #fff;
+  border-top: 1rpx solid ccc;
+  text-align: center
+}
+.header .balance{
+  font-size: 28rpx;
+  margin: 73rpx 40rpx;
+  color: #666
+}
+.header .header_top{
+  margin-top: 30rpx
+}
+.header .balance .yuan{
+  font-size: 24rpx
+}
+.header .header_top .xt{
+  border-top: 1rpx solid #e5e5e5;
+  width: 132rpx;
+  display: inline-block;
+  position: relative;
+  top: -8rpx
+}
+.header .money{
+  font-size: 88rpx;
+  color: #ffbe00;
+}
+
+
+.content{
+  background: #fff;
+  padding: 29rpx 36rpx;
+}
+.header{
+  padding-bottom: 81rpx
+}
+/* .hx{
+   border-top: 1rpx solid #e5e5e5; 
+  width: 90%;
+  margin: 0 auto;
+} */
+.content .num_list{
+  width: 320rpx;
+  height: 152rpx;
+  /* line-height: 152rpx; */
+  border: 1rpx solid #e5e5e5;
+   background: #f8f8f8;
+  border-radius: 4rpx;
+  display: inline-block;
+  margin-top: 29rpx;
+  text-align: center;
+  padding-top: 20rpx
+}
+.content .lists{
+  display: inline-block;
+  border-radius: 4rpx;
+ 
+}
+ .content .lists:nth-child(2n+1){
+  margin-left: 24rpx;
+}
+.small_txt{
+  font-size: 24rpx;
+  display: block;
+  margin-top: 15rpx
+}
+.num_color{
+  font-size: 48rpx
+}
+.num_colors{
+  font-size: 42rpx
+}
+/*.content .num_list:nth-child(3n-3){
+  margin-left: 19rpx;
+  margin-right: 19rpx
+} */
+.content .tit{
+  font-size: 50rpx;
+  margin-top: 70rpx;
+  color: #333
+}
+.content .select_item{
+   position: relative;
+   border: 1rpx solid #ffbe00;
+}
+
+.content .select_src{
+  width: 42rpx;
+  height: 38rpx;
+  position: absolute;
+  right: 0;
+  bottom: 0
+}
+
+.footer{
+  text-align: center;
+  padding-bottom: 30rpx;
+  padding-top: 30rpx;
+  background: #f8f8f8
+}
+.recharge_div{
+  /* height: 180rpx; */
+  background: #fff;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  box-shadow: 10rpx 14rpx 16rpx #ccc
+}
+.recharge_btn{
+  text-align: center;
+  width: 640rpx;
+  margin: 30rpx auto 30rpx auto;
+}
+.footer .footer_tit{
+  text-align: left;
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 65rpx;
+  margin-right: 60rpx; 
+  line-height: 48rpx;
+}
+.footer .footer_tit .dot{
+  width: 11rpx;
+  height: 11rpx;
+  margin-left: -15rpx
+}
+.contents{
+  background: #fff;
+  height: 100%;
+  padding: 29rpx 36rpx;
+  border-top: 1rpx solid #e5e5e5; 
+}
+.headers{
+  padding-bottom: 81rpx
+}
+
+.contents .num_list{
+  width: 208rpx;
+  height: 101rpx;
+  line-height: 101rpx;
+  border: 1rpx solid #e5e5e5;
+  border-radius: 2rpx;
+  display: inline-block;
+  margin-top: 29rpx;
+  text-align: center;
+  font-size: 42rpx
+}
+.contents .lists{
+  display: inline-block
+}
+.contents .lists:nth-child(3n-3){
+  margin-left: 19rpx;
+  margin-right: 19rpx
+}
+.contents .num_list:nth-child(3n-3){
+  margin-left: 19rpx;
+  margin-right: 19rpx
+}
+.contents .tit{
+  font-size: 32rpx;
+  color: #666
+}
+.contents .select_item{
+   position: relative;
+   border: 1rpx solid #ffbe00;
+}
+
+.contents .select_src{
+  width: 42rpx;
+  height: 38rpx;
+  position: absolute;
+  right: 0;
+  bottom: 0
+}
+.footers{
+  background: #fff;
+  padding-bottom: 160rpx
+}
+
+.footers .recharge{
+  font-size: 24rpx;
+  text-align: center;
+  margin-top: 20rpx;
+  color: #666
+}
+.footers .recharge label{
+  color: #ffbe00
+}

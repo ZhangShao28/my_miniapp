@@ -1,0 +1,25 @@
+<!--pages/parkdetail/parkdetail.wxml-->
+<view class='container'>
+  <view class='header'>
+    <image class='loactionImg' src='../../images/localize@3x.png'></image>
+    <view class='park_name'>{{park_name}}</view>
+  </view>
+  <view class='content'>
+    <view class='charge_list' bindtap='select_item' wx:for='{{chargelist}}' wx:key='{{index}}' data-id='{{index}}'>
+      <view class='num'>{{item.num}}</view>
+       <block  wx:if='{{index == select_id}}'>
+        <image class='select_charge' src='{{select_charge}}'></image>
+        <view class='state' style='color:{{select_colors}}'>{{state_use}}</view>
+      </block>
+       <block  wx:else>
+       <image class='select_charge' src='{{charge}}'></image>
+        <view class='state' style='color:{{colors}}'>{{state_use}}</view>
+      </block>
+    </view>
+  </view>
+  <view class='footer'>
+    <view>
+        <image bindtap='begin_btn' class='begin_btn' src='{{begin_src}}'></image>
+    </view>
+  </view> 
+</view>

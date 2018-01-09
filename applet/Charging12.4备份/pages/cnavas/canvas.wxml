@@ -1,0 +1,9 @@
+<!--pages/cnavas/canvas.wxml-->
+<!-- <view class='content'>
+  <image animation="{{animationData1}}" src='../../images/parkdetail/charging@3x.png'></image>
+  <image animation="{{animationData2}}" src='../../images/parkdetail/Charge--@3x.png'></image>
+</view> -->
+  <view class='canvas'>
+      <image animation="{{animationData2}}" src='../../images/parkdetail/In-the-charging@3x.png'></image>
+      <canvas class="circle_2" style="width:340rpx; height:340rpx;" canvas-id="canvasArcCir"></canvas>
+  </view>

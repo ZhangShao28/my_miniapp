@@ -1,0 +1,81 @@
+<!--pages/recharge/recharge.wxml-->
+<!-- <swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      {{item}}
+    </swiper-item>
+  </block>
+</swiper> -->
+<view class='container' wx:if='{{is_no==1}}'>
+  <view class='content'>
+    <view class='tit'>购买月卡 马上充电</view>
+      <block wx:for='{{recharge_list}}'>
+        <view class='lists'  bindtap='select_recharge' data-id='{{index}}' data-mid='{{item.mid}}'>
+          <view class='num_list select_item' wx:if='{{recharge_id == index}}' style='background:{{num_color}}'>
+            <label class='num_color' style='color:#fff;'>{{item.card_money}}元</label>
+            <label class='small_txt' style='color:#fff;'>{{item.useful_days}}天内有效</label>
+          </view> 
+          <view class='num_list' wx:else>
+            <label class='num_color'>{{item.card_money}}元</label>
+            <label class='small_txt'>{{item.useful_days}}天内有效</label>
+          </view>
+      </view>
+      </block>
+  </view>
+   <view class='footer'>
+        <view class='footer_tit'>
+        <image class='dot' src='../../images/recharge/dot.png'></image>
+        该月卡只在本小区使用。月卡生效期间，一天可使用{{use_times}}次充电服务，充满自动断电，未充满拔下充电器计为1次充电。
+        </view>
+        <view class='footer_tit'>
+        <image class='dot' src='../../images/recharge/dot.png'></image>
+         用户使用期间，若出现设备故障，故障报修审核成功后补偿1天的充电服务。
+        </view>
+         <view class='footer_tit'>
+        <image class='dot' src='../../images/recharge/dot.png'></image>
+        当前若无月卡，购买后月卡立即生效；当前若已有月卡，续费后有效期顺延（1个月按照30天计算）。
+        </view>
+         <view class='footer_tit'>
+        <image class='dot' src='../../images/recharge/dot.png'></image>
+        购卡成功后，相应费用不予退还。
+        </view>
+         <view style='margin-bottom:80rpx;opacity:0'>
+       ---
+        </view>
+    </view>
+    <view class='recharge_div'>
+      <view class='recharge_btn btn'  bindtap='recharge_btn'>充  值</view>
+    </view>
+</view>
+
+
+<view class='container' wx:if='{{is_no==2}}'>
+  <view class='header headers'>
+    <view class='header_top'>
+    <label class='xt'></label><label class='balance'>余额 <label class='yuan'>(元)</label></label><label class='xt'></label>
+    </view>
+    <view class='money'>
+      {{money}}
+    </view>
+  </view>
+  <view class='hx'></view>
+  <view class='contents'>
+    <view class='tit'>充值金额</view>
+      <block wx:for='{{num_moneylist}}'>
+        <view class='lists'  bindtap='select_recharge' data-id='{{index}}' data-cid='{{item.id}}'>
+          <view class='num_list select_item' wx:if='{{recharge_id == index}}'>
+            <image class='select_src' src='../../images/recharge/Select-the-box@3x.png'></image>
+            <label class='num_colors' style='color:{{num_color}}'>{{item.money}}元</label>
+          </view> 
+          <view class='num_list' wx:else>
+            <label >{{item.money}}元</label>
+          </view>
+      </view>
+       </block>
+  </view>
+  <view class='footers'>
+    <view class='recharge_btn btn'  bindtap='recharge_cash_btn'>充  值</view>
+    <view class='recharge'>充值表示您已阅读，并同意《<label bindtap='go_recharge'>用户充值协议</label>》</view>
+  </view>
+</view>

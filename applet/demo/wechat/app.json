@@ -1,0 +1,19 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/main/main",
+    "pages/addComment/addComment",
+    "pages/addPingLun/addPingLun",
+    "pages/address/address",
+    "pages/showAddress/showAddress"
+   
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Login",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh":true
+  }
+}
