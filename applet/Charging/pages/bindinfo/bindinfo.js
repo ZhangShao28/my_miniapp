@@ -12,6 +12,7 @@ Page({
     verify_txt: '获取验证码',
     tag: true,
     dis: '',
+    c_type:''
     // dis_btn:'disabled'
   },
   user_phone: function (e) {
@@ -158,19 +159,42 @@ Page({
             duration: 1500
           })
         } else if (response.data.err == '1') {//绑定成功
-
-          wx.showToast({
-            title: response.data.msg,
-            image: '../../images/dui@2x.png',
-            duration: 1500,
-            success: function () {
-              setTimeout(function () {
-                wx.navigateTo({
-                  url: '../recharge/recharge?id=' + response.data.data.state + '&xqid=' + that.data.xqid,
-                })
-              }, 2000)
-            }
-          })
+          console.log("c_type",that.data.c_type)
+          if (that.data.c_type==1){
+            wx.showToast({
+              title: response.data.msg,
+              image: '../../images/dui@2x.png',
+              duration: 1500,
+              success: function () {
+                setTimeout(function () {
+                  wx.navigateTo({
+                    url: '../myinfo/myinfo'
+                  })
+                }, 2000)
+              }
+            })
+            }else{
+            if (response.data.data.state==3){
+                  wx.reLaunch({
+                    url: '../index/index',
+                  })
+              }else{
+                  wx.showToast({
+                    title: response.data.msg,
+                    image: '../../images/dui@2x.png',
+                    duration: 1500,
+                    success: function () {
+                      setTimeout(function () {
+                        wx.navigateTo({
+                          url: '../recharge/recharge?id=' + response.data.data.state + '&xqid=' + that.data.xqid,
+                        })
+                      }, 2000)
+                    }
+                  })
+              }
+        
+          }
+    
         } else if (response.data.err == '2') {//手机号码已被绑定过
           wx.showToast({
             title: response.data.msg,
@@ -195,9 +219,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("xqid",options.xqid)
+    console.log("xqid", options.xqid, options.c_type)
       this.setData({
-        xqid: options.xqid
+        xqid: options.xqid,
+        c_type:options.c_type
       })
   },
 

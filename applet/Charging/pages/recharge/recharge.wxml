@@ -26,7 +26,7 @@
    <view class='footer'>
         <view class='footer_tit'>
         <image class='dot' src='../../images/recharge/dot.png'></image>
-        该月卡只在本小区使用。月卡生效期间，一天可使用{{use_times}}次充电服务，充满自动断电，未充满拔下充电器计为1次充电。
+        该月卡只在{{xq_name}}使用。月卡生效期间，一天可使用{{use_times}}次充电服务，充满自动断电，未充满拔下充电器计为1次充电。
         </view>
         <view class='footer_tit'>
         <image class='dot' src='../../images/recharge/dot.png'></image>

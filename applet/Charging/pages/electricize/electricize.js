@@ -218,78 +218,32 @@ Page({
           wx.redirectTo({
             url: '../bindinfo/bindinfo?xqid=' + xq_id
           })
-        } else if (state == 6) {
-          that.setData({
-            dev_state: state,
-            dev_msg: response.data.msg
-          })
-          clearInterval(timers);
-          clearInterval(timers_m);
+        } else if (state >= 6) {
           wx.showToast({
             title: response.data.msg,
             image: '../../images/cuo@2x.png',
-            duration: 2000
+            duration: 2000,
+            success: function () {
+              setTimeout(function () {
+                wx.reLaunch({
+                  url: '../index/index',
+                })
+              }, 2000)
+            }
           })
-          if (that.data.con_state == 55){
-            setTimeout(function () {
-              wx.reLaunch({
-                url: '../index/index',
-                success: function (res) { },
-                fail: function (res) { },
-                complete: function (res) { },
-              })
-            }, 2000)
-          }
-          
-        } else if (state == 7) {//设备正在充电中
           that.setData({
             dev_state: state,
             dev_msg: response.data.msg,
-              connet_state: 2,
-              state2_img: '../../images/electricize/loading.png',
-              state2_txt: '车辆与设备连接失败',
-              state2_btn: '请重试',
-              state2_btn_show: 1
-          })
-          wx.showToast({
-            title: response.data.msg,
-            image: '../../images/cuo@2x.png',
-            duration: 2000
+            connet_state: 2,
+            state2_img: '../../images/electricize/loading.png',
+            state2_txt: '车辆与设备连接失败',
+            state2_btn: '请重试',
+            state2_btn_show: 1
           })
           clearInterval(timers);
           clearInterval(timers_s);
           clearInterval(timers_m);
-          if (that.data.con_state == 5 || that.data.con_state == 55) {
-            setTimeout(function () {
-              wx.reLaunch({
-                url: '../index/index',
-                success: function (res) { },
-                fail: function (res) { },
-                complete: function (res) { },
-              })
-            }, 1500)
-          }
-        } else if (state >= 10) {
-          that.setData({
-            dev_state: state,
-            dev_msg: response.data.msg
-          })
-          clearInterval(timers);
-          clearInterval(timers_m);
-          wx.showToast({
-            title: response.data.msg,
-            image: '../../images/cuo@2x.png',
-            duration: 2000
-          })
-          setTimeout(function(){
-            wx.reLaunch({
-              url: '../index/index',
-            })
-          },1500)
         }
-
-
-
       },
       fail: function (err) {
         console.log(err);
@@ -351,7 +305,7 @@ Page({
             timers_m = setInterval(function () {
               console.log("connet", time_m)
               time_m++;
-              if (time_m > 30) {
+              if (time_m > 32) {
                 clearInterval(timers_m);
                 clearInterval(timers_s)
                 time_m = 0;
@@ -369,14 +323,14 @@ Page({
                   phone: data.data.our_phone,
                   property_phone: data.data.property_phone
                 })
-              } else if (0 < time_m <=30) {
+              } else if (0 < time_m <=32) {
                 that.connect();
               }
             }, 2000)
           }
       },
       fail: function (err) {
-        console.log(err);
+        console.log("失败");
         wx.reLaunch({
           url: '../index/index',
         })
@@ -391,7 +345,7 @@ Page({
     clearInterval(timers);
     clearInterval(timers_m);
     var that = this;
-    console.log("oder_no", options.order_no, options.deviceid)
+    console.log("oder_no", options.order_no, options.deviceid, options.state)
     that.setData({
       order_no: options.order_no,
       con_state: options.state,
@@ -432,13 +386,14 @@ Page({
             connet_txt: '平台正在连接您的电动车'
           })
         }, 2800)
-        that.connect();
+      
         that.chongshi();
+        that.connect();
         var n = 1
         timers = setInterval(function () {
           console.log("onload")
           n++;
-          if (n > 30) {
+          if (n > 32) {
             clearInterval(timers);
               n = 1;
             that.setData({
@@ -450,6 +405,7 @@ Page({
           }
         }, 2000)
       } else {
+        console.log("显示")
         that.setData({
           state0_img: '../../images/electricize/charge_1.gif',
           connet_state: 0,

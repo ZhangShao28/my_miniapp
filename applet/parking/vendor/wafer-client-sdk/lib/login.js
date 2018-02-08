@@ -101,7 +101,7 @@ var login = function login(options) {
             header: header,
             method: options.method,
             data: options.data,
-
+            login:true,
             success: function (result) {
                 var data = result.data;
 

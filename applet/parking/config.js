@@ -24,7 +24,7 @@ var config = {
         
     },
     up_formid: function (form_id){
-      console.log(this.service.hostUrl,  JSON.stringify(form_id))
+      // console.log(this.service.hostUrl,  JSON.stringify(form_id))
       qcloud.request({
         url: this.service.hostUrl + 'user/save_formid',
         data: {
@@ -33,7 +33,7 @@ var config = {
         method: 'POST',
         header: { 'content-type': 'application/x-www-form-urlencoded' },
         success: function (response) {
-          console.log(response);
+          // console.log(response);
 
         },
         fail: function (err) {
@@ -42,5 +42,4 @@ var config = {
       });
     }
 };
-
 module.exports = config;

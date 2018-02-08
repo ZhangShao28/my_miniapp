@@ -280,3 +280,12 @@ navigator {
   position: relative;
   bottom: 100rpx;
 }
+.btn_dis_none{
+  height:110rpx;
+  width: 90%;
+   opacity: 0; 
+  position: absolute;
+}
+.helpinfo{
+  padding: 20rpx 60rpx
+}

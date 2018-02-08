@@ -1,0 +1,33 @@
+<!--pages/wallet/wallet.wxml-->
+<view class='container'>
+    <view class='header'>
+        <view class='tit'>
+        <label>余额</label>
+        </view>
+         <view class='xian'></view>
+        <view class='money'>
+        {{money}}<label class='yuan'>元</label>
+        </view>
+    </view>
+    <view class='content'>
+        <view class='list_top'>
+        <image src='../../images/money@2x.png'></image>
+          明细
+        </view>
+        <view class='list_con' wx:for='{{money_list}}'>
+            <view class='time'>
+            {{item.pay_time}}
+            </view>
+            <view>
+                <view class='money_num'>
+                           {{item.pay_money}}
+                </view>
+                <view class='money_tit'>
+                    {{item.charge_typename}}
+                </view>
+            </view> 
+        </view>
+    </view>
+    <view class="loading" hidden="{{!Loading}}">正在载入更多...</view>  
+    <view class="loading complete" hidden="{{!LoadingComplete}}">已加载全部</view>  
+</view>

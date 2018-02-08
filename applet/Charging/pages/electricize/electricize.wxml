@@ -43,7 +43,7 @@
     </view>
     <view class='repairs'>
       <view class='tit' bindtap='go_repair'>故障报修</view>
-      <view class='num'>物业电话：{{phone}}</view>
+      <view class='num'>客服电话：{{phone}}</view>
     </view>
   </view>
 </view>

@@ -205,7 +205,8 @@
   z-index: 999999;
   height: 500rpx;
   width: 100%;
-  bottom: -500rpx
+  /* bottom: -500rpx */
+  bottom: -584rpx;
 }
 .payment_box{
   font-size: 34rpx;

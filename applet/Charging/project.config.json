@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.7.1",
+	"libVersion": "1.9.1",
 	"appid": "wx34cb2999288de45e",
 	"projectname": "parkingSpace",
 	"condition": {
@@ -20,8 +20,12 @@
 			"current": -1,
 			"list": []
 		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
-			"current": 2,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
@@ -40,6 +44,24 @@
 					"name": "charging",
 					"pathName": "pages/electricize/electricize",
 					"query": "state=110"
+				},
+				{
+					"id": -1,
+					"name": "注册协议",
+					"pathName": "pages/protocol/protocol",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "充值协议",
+					"pathName": "pages/chargeRule/chargeRule",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "绑定手机号",
+					"pathName": "pages/bindinfo/bindinfo",
+					"query": "xaid=1"
 				}
 			]
 		}

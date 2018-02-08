@@ -59,6 +59,7 @@ Page({
         var data = response.data.data;
         var phone = data.u_mobilephone.replace(/^(\d{3})\d{4}(\d{4})$/, "$1****$2");
         var img = app.userInfo.avatarUrl;
+        console.log("头像",img)
         if (data.is_charging=='y'){
           that.setData({
             is_charging: '充电中'

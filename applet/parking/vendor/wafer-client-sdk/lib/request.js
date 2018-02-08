@@ -98,12 +98,10 @@ function request(options) {
 
                         message = '登录态已过期';
                         error = new RequestError(data.error, message);
-
                     } else {
                         message = '鉴权服务器检查登录态发生错误(' + (data.error || 'OTHER') + ')：' + (data.message || '未知错误');
                         error = new RequestError(constants.ERR_CHECK_LOGIN_FAILED, message);
                     }
-
                     callFail(error);
                     return;
                 }

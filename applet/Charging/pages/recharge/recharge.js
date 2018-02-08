@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+      xq_name:'',
       money:'0.00',
       recharge_selid:'1',
       recharge_src:'../../images/recharge/Recharge-and-start-charging@3x.png',
@@ -345,6 +346,7 @@ Page({
                   })
             }
             that.setData({
+              xq_name: data.xq_name,
               recharge_list: data.recharge_list,
               use_times: data.use_times,
               remain_day: data.remain_day,
@@ -389,6 +391,10 @@ Page({
             console.log(err);
           }
         });
+    } else if (that.data.state_id==3){
+          wx.reLaunch({
+            url: '../index',
+          })
       }
   },
 

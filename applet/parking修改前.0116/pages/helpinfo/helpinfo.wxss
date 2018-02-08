@@ -1,0 +1,65 @@
+/* pages/helpinfo/helpinfo.wxss */
+.header{
+  height: 110rpx;
+  line-height: 110rpx;
+  font-size: 32rpx;
+  color: #666;
+  padding-left: 20rpx;
+  background: #fff;
+  box-shadow: 1rpx 4rpx 2rpx #e5e5e5
+}
+.content{
+  margin: 20rpx;
+  background: #fff;
+  box-shadow: 1rpx 4rpx 2rpx #e5e5e5
+}
+.content .help_list{
+  height: 110rpx;
+  line-height: 110rpx;
+  font-size: 30rpx;
+  padding-left: 30rpx;
+  position: relative;
+}
+.content .help_list:nth-child(2){
+ border-top: 1rpx solid #e5e5e5;
+ border-bottom: 1rpx solid #e5e5e5;
+}
+.content .help_list .button_btn{
+  width: 144rpx;
+  height: 55rpx;
+  line-height: 55rpx;
+  font-size: 28rpx;
+  display: inline-block;
+  position: absolute;
+  right: 30rpx;
+  top: 28rpx
+}
+.footer{
+  text-align: center;
+  margin-top: 550rpx
+}
+.footer .kefu_icon{
+  width: 31rpx;
+  height: 33rpx;
+  vertical-align: middle
+}
+.footer .kefu1{
+  display: inline-block;
+  font-size: 28rpx;
+  color: #999;
+  margin: 80rpx 0rpx 30rpx auto;
+}
+.footer .kefu2{
+  display: inline-block;
+  font-size: 28rpx;
+  color: #999;
+  margin: 80rpx 0rpx 30rpx 60rpx;
+}
+
+.btn_end{
+    font-size:28rpx;
+    display:inline-block;
+    position:absolute;
+    right:30rpx;
+    color: #999
+}

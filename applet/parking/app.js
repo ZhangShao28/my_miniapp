@@ -3,6 +3,7 @@ var qcloud = require('./vendor/wafer-client-sdk/index.js');
 var config = require('./config.js');
 var checkNetWork = require("./utils/CheckNetWork.js");
 var gloabalFomIds = [];
+var login;
 App({
   onLaunch: function (options) {
     var that = this;
@@ -15,7 +16,7 @@ App({
           }
          gloabalFomIds = formIds;
   },
-  login:function(){
+  login:function(option){
     var that = this;
     // 登录
     qcloud.setLoginUrl(config.service.loginUrl);
@@ -79,6 +80,7 @@ App({
     qcloud: qcloud,
     config: config,
     gloabalFomIds:[],
+    login:login,
     checkNetWork: checkNetWork,
     sid:'weapp_session_F2C224D4-2BCE-4C64-AF9F-A6D872000D1A',
   }

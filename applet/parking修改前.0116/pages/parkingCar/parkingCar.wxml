@@ -1,0 +1,61 @@
+<!--pages/parkingCar/parkingCar.wxml-->
+<view class='container'>
+    <view class='car_list'>
+      <view class='car_num'>
+      {{car_num}}
+      </view>
+      <view class='car_btn' bindtap='go_selectCar' wx:if='{{car_total_num==1}}'>
+      切换车辆
+      <image src='../../images/Sideofthetriangle@3x-.png'></image>
+      </view>
+    </view>
+    <view class='header'>
+          <view class='my_line'>
+              <view class='my_tit'>入场时间</view>
+          </view>
+          <view class='in_time'>
+              {{in_time}}
+          </view>
+    </view>
+
+    <view class='content'>
+          <view class='my_line'>
+              <view class='my_tit'>停车计时</view>
+          </view>
+          <view class='park_time'>
+              {{parking_time}}
+          </view>
+    </view>
+    <view class='footer'>
+          <view class='my_line'>
+              <view class='my_tit'>停车费用</view>
+          </view>
+          <view class='park_money' style="padding-left:{{is_overtime==1?'54rpx':'0rpx'}}">
+           
+              {{money}}<label class='yuan'>元 
+              <image wx:if='{{is_overtime==1}}' class='overtime' src='../../images/overtime@2x.png'></image>
+              </label>
+          </view>
+          <view class='park_tit' wx:if='{{tit_state==0}}'>
+          {{park_tit}}
+          </view>
+          <view class='park_tit' wx:if='{{tit_state==1}}'>
+            （需补交{{zhifu_money}}）
+          </view>
+          <view class='rule' bindtap='go_rule'>
+              收费规则
+         <image src='../../images/Sideofthetriangle@2x-.png'></image>
+          </view>
+          <view class='button button_btn' bindtap='over_car'>
+            {{over_btn}}
+          </view>
+          <view class='no_time' bindtap='over_notime' wx:if='{{tit_state_no==0}}'>
+            未驶入停车场
+          </view>
+          <view class='kefu' bindtap='call_phone'>
+              <image class='kefu_icon' src='../../images/telephone@3x.png'></image>
+              客服电话
+
+          </view>
+    </view>
+</view>
