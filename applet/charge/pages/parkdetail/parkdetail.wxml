@@ -23,16 +23,16 @@
       </block>
        <block  wx:else>
             <block wx:if='{{item.use_status == 1}}' >
-            <image class='select_charge' src='../../images/parkdetail/The-vacancy@2x.png'></image>
-            <view class='state' style='color:{{colors_use}}'>空置</view>
+            <image class='select_charge' src='../../images/parkdetail/vacancy@2x.png'></image>
+            <view class='state' style='color:{{colors_vacancy}}'>空置</view>
           </block>
           <block wx:elif='{{item.use_status == 2}}'>
-          <image class='select_charge' src='{{charge}}'></image>
-          <view class='state' style='color:{{colors}}'>使用中</view>
+          <image class='select_charge' src='{{charge_use}}'></image>
+          <view class='state' style='color:{{colors_use}}'>使用中</view>
           </block>
           <block wx:elif='{{item.use_status == 3}}'>
           <image class='select_charge' src='{{charge}}'></image>
-          <view class='state' style='color:{{colors}}'>设备故障</view>
+          <view class='state' style='color:{{colors}}'>离线</view>
           </block>
       </block>
     </view>

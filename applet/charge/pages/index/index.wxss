@@ -1,5 +1,22 @@
 /**index.wxss**/
 @import '../switch/switch.wxss';
+/*swtich样式-start*/
+/*swtich整体大小*/
+.wx-switch-input{
+  width:70rpx !important;
+  height:42rpx !important;
+}
+/*白色样式（false的样式）*/
+.wx-switch-input::before{
+  width:68rpx !important;
+  height: 40rpx !important;
+}
+/*绿色样式（true的样式）*/
+.wx-switch-input::after{
+  width: 38rpx !important;
+  height: 38rpx !important;
+}
+/*swtich样式end*/
 page{
   border-top: none
 }
@@ -113,8 +130,9 @@ page{
 }
 .content .con-list .con-list-bottom .tit{
   position: relative;
-  top: -10rpx;
-  margin-right: 10rpx
+  top: 2rpx;
+  margin-right: 10rpx;
+  color: #666;
 }
 .bottoms{
   text-align: center;

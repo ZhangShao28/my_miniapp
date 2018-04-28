@@ -8,15 +8,17 @@ Page({
    */
   data: {
     park_name: '',
-    select_charge: '../../images/parkdetail/round-2@3x.png',//可用
-    // charge_use: '../../images/parkdetail/The-vacancy@3x.png',//空闲
-    colors_use: '#ffbe00',//使用中
-    select_colors: '#36C417',//选中
+    select_charge: '../../images/parkdetail/vacancy@2x.png',//可用
+    // charge_use: '../../images/parkdetail/vacancy@2x.png',//空闲
+    colors_vacancy: '#666',//空置
+    select_colors: '#666',//选中
+    color_use: '#ffbe00',//使用中
     state_no: '空置',
     state_use: '充电中',
     state_gz: '故障',
     colors: '#e5e5e5',//使用、故障
-    charge: '../../images/parkdetail/In-the-charging@2x.png',//故障
+    charge: '../../images/parkdetail/line@2x.png',//故障
+    charge_use:'../../images/parkdetail/Inthecharging@2x.png',//使用中
     select_id: null,
     uses:'',
     device_id: null,
@@ -37,10 +39,22 @@ Page({
       })
       // console.log(this.data.device_id, this.data.device_no, this.data.uses)
 
-    } else {
+    } else if (e.currentTarget.id==2){
       wx.showToast({
         title: '正在使用中',
         image:'../../images/cuo@2x.png'
+      })
+      this.setData({
+        select_id: null,
+        device_id: null,
+        device_no: null,
+        uses: '2',
+        btn_on: 0
+      })
+    }else {
+      wx.showToast({
+        title: '设备已离线',
+        image: '../../images/cuo@2x.png'
       })
       this.setData({
         select_id: null,
@@ -86,7 +100,7 @@ Page({
               success: function (res) {
                 if (res.confirm) {
                   wx.navigateTo({
-                    url: '../recharge/recharge?id=1&phone_id=1&xqid=' + xq_id,
+                    url: '../rechargeMonth/rechargeMonth?id=1&phone_id=1&xqid=' + xq_id,
                   })
                 } else if (res.cancel) {
                   console.log('用户点击取消')
@@ -98,11 +112,11 @@ Page({
               title: '',
               confirmText: '去充值',
               confirmColor: '#FFAC32',
-              content: '当前您的余额为0元\r\n请先充值后继续开启充电',
+              content: response.data.msg,
               success: function (res) {
                 if (res.confirm) {
                   wx.navigateTo({
-                    url: '../recharge/recharge?id=2',
+                    url: '../rechargeCash/rechargeCash?id=2&phone_id=1',
                   })
                 } else if (res.cancel) {
                   console.log('用户点击取消')

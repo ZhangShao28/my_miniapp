@@ -13,31 +13,31 @@ Page({
     flag: true
   },
   //点击switch切换状态
-  clickSwitch: function (e) {
-    // console.log(this)
-    var animation = wx.createAnimation({
-      duration: 200,
-      timingFunction: 'linear',
-    })
-    this.animation = animation;
-    if (this.flag) {
-      this.flag = false;
-      console.log(1)
-      animation.translate(0).step();
-      this.setData({
-        'switch_btn.btnsrc': '../../images/Turn-off@3x.png',
-        'switch_btn.animationData': animation.export()
-      })
-    } else {
-      this.flag = true
-      console.log(2)
-      animation.translate(20).step();
-      this.setData({
-        'switch_btn.btnsrc': '../../images/button@3x.png',
-        'switch_btn.animationData': animation.export()
-      })
-    }
-  },
+  // clickSwitch: function (e) {
+  //   // console.log(this)
+  //   var animation = wx.createAnimation({
+  //     duration: 200,
+  //     timingFunction: 'linear',
+  //   })
+  //   this.animation = animation;
+  //   if (this.flag) {
+  //     this.flag = false;
+  //     console.log(1)
+  //     animation.translate(0).step();
+  //     this.setData({
+  //       'switch_btn.btnsrc': '../../images/Turn-off@3x.png',
+  //       'switch_btn.animationData': animation.export()
+  //     })
+  //   } else {
+  //     this.flag = true
+  //     console.log(2)
+  //     animation.translate(20).step();
+  //     this.setData({
+  //       'switch_btn.btnsrc': '../../images/button@3x.png',
+  //       'switch_btn.animationData': animation.export()
+  //     })
+  //   }
+  // },
   /**
    * 生命周期函数--监听页面加载
    */

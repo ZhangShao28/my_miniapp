@@ -24,30 +24,33 @@ App({
         console.log('登录成功', userInfo);
         that.globalData.userInfo = userInfo;
         // wx.setStorageSync('user', userInfo)
-      
-        wx.getLocation({
-          type: 'wgs84',
-          success: function (res) {
-            var latitude = res.latitude
-            var longitude = res.longitude
-            var speed = res.speed
-            var accuracy = res.accuracy
-              var val = wx.getStorageSync('loc');
-              if (val!=''){
-              } else {
-                wx.setStorageSync('loc', res.accuracy)
-                wx.reLaunch({
-                  url: './index',
-                })
-              }
-          }
-        })
+        var val = wx.getStorageSync('loc');
+        if (val != '') {
+
+        } else {
+          wx.setStorageSync('loc', userInfo)
+          that.getLocation();
+        }
+    
       },
       fail: function (err) {
         console.log('登录失败', err);
+        // if (err.LoginError.message =='微信登录失败，请检查网络状态'){
+        //   wx.showModal({
+        //     title: '',
+        //     content: '微信登录失败，请检查网络状态',
+        //     showCancel: false,
+        //     success: function (res) {
+        //       if (res.confirm) {
+           
+        //       }
+        //     }
+        //   })
+        // }else{
         wx.showModal({
           title: '授权提示',
           content: '小程序需要您的微信授权才能使用，点击确定去授权',
+          showCancel:false,
           success: function (res) {
             if (res.confirm) {
               wx.openSetting({
@@ -59,8 +62,47 @@ App({
             }
           }
         })
-      }
+        }
+      // }
     });
+  },
+  getLocation:function(){
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        var latitude = res.latitude
+        var longitude = res.longitude
+        var speed = res.speed
+        var accuracy = res.accuracy
+        wx.reLaunch({
+          url: './index',
+        })
+      },
+      fail: function (err) {
+        wx.hideLoading();
+        // wx.showModal({
+        //   title: '',
+        //   content: '请打开手机的定位功能',
+        //   showCancel: false,
+        //   confirmText: '关闭'
+        // })
+        wx.showModal({
+          title: '',
+          content: '请允许小程序使用您的定位功能',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              wx.openSetting({
+                success: function (res) {
+                  //尝试再次定位
+                  that.getLocation();
+                }
+              })
+            }
+          }
+        })
+      }
+    })
   },
   dealFormIds: function (formId) {
     var that = this;

@@ -11,18 +11,19 @@ Page({
     money:'0.00',
     is_charging:'',
     server_phone:'',
-    phone_switch:''
+    phone_switch:'',
+    is_new_reward:''//是否新人福利
   },
   go_recharge:function(e){
     console.log(e.currentTarget.dataset.id)
-    if (e.currentTarget.dataset.id==1){
+    if (e.currentTarget.dataset.id==1){//月卡续费
       wx.navigateTo({
-        url: '../recharge/recharge?id=1' + '&xqid=' + e.currentTarget.dataset.xqid + '&phone_id=1',
+        url: '../rechargeMonth/rechargeMonth?id=1&phone_id=1' + '&xqid=' + e.currentTarget.dataset.xqid,
       })
 
-    } else if (e.currentTarget.dataset.id==2){
+    } else if (e.currentTarget.dataset.id==2){//现金充值不带小区id
       wx.navigateTo({
-        url: '../recharge/recharge?id=2&phone_id=1',
+        url: '../rechargeCash/rechargeCash?id=2&phone_id=1',
       })
     }
     
@@ -74,7 +75,8 @@ Page({
           phone: phone,
           tx_img: img,
           server_phone: data.server_phone,
-          phone_switch: data.phone_switch
+          phone_switch: data.phone_switch,
+          is_new_reward: data.is_new_reward
         })
       },
       fail: function (err) {

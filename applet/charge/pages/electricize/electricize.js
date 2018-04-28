@@ -35,7 +35,8 @@ Page({
         minute: '00',
         second: '00',
         is_no:1,
-        state1_src:'../../images/electricize/electricize_ing.gif'
+        state1_src:'../../images/electricize/electricize_ing.gif',
+        begin_btn:true,//确认开始充电按钮是否可用
   },
   go_our_kefu:function(){
     wx.makePhoneCall({
@@ -115,6 +116,9 @@ Page({
   },
   begin_btn:function(){//确认扫码充电
     var that = this;
+    that.setData({
+      begin_btn:false//按钮不可点
+    })
       that.chongshi();
       console.log(that.data.dev_state)
       that.connect();
@@ -168,8 +172,8 @@ Page({
             content: '您还未购买月卡,\r\n立即去购买',
             success: function (res) {
               if (res.confirm) {
-                wx.navigateTo({
-                  url: '../recharge/recharge?id=1&xqid=' + xq_id,
+                wx.reLaunch({
+                  url: '../rechargeMonth/rechargeMonth?id=1&xqid=' + xq_id + '&deviceid=' + that.data.device_id+ '&state=' + that.data.con_state,
                 })
               } else if (res.cancel) {
                 console.log('用户点击取消')
@@ -184,11 +188,11 @@ Page({
             title: '',
             confirmText: '去充值',
             confirmColor: '#FFAC32',
-            content: '当前您的余额为0元\r\n请先充值后继续开启充电',
+            content: response.data.msg,
             success: function (res) {
               if (res.confirm) {
-                wx.navigateTo({
-                  url: '../recharge/recharge?id=2',
+                wx.reLaunch({
+                  url: '../rechargeCash/rechargeCash?id=2&xqid=' + xq_id + '&deviceid=' + that.data.device_id+'&state=' + that.data.con_state,
                 })
               } else if (res.cancel) {
                 console.log('用户点击取消')
@@ -218,78 +222,32 @@ Page({
           wx.redirectTo({
             url: '../bindinfo/bindinfo?xqid=' + xq_id
           })
-        } else if (state == 6) {
-          that.setData({
-            dev_state: state,
-            dev_msg: response.data.msg
-          })
-          clearInterval(timers);
-          clearInterval(timers_m);
+        } else if (state >= 6) {
           wx.showToast({
             title: response.data.msg,
             image: '../../images/cuo@2x.png',
-            duration: 2000
+            duration: 2000,
+            success: function () {
+              setTimeout(function () {
+                wx.reLaunch({
+                  url: '../index/index',
+                })
+              }, 2000)
+            }
           })
-          if (that.data.con_state == 55){
-            setTimeout(function () {
-              wx.reLaunch({
-                url: '../index/index',
-                success: function (res) { },
-                fail: function (res) { },
-                complete: function (res) { },
-              })
-            }, 2000)
-          }
-          
-        } else if (state == 7) {//设备正在充电中
           that.setData({
             dev_state: state,
             dev_msg: response.data.msg,
-              connet_state: 2,
-              state2_img: '../../images/electricize/loading.png',
-              state2_txt: '车辆与设备连接失败',
-              state2_btn: '请重试',
-              state2_btn_show: 1
-          })
-          wx.showToast({
-            title: response.data.msg,
-            image: '../../images/cuo@2x.png',
-            duration: 2000
+            connet_state: 2,
+            state2_img: '../../images/electricize/loading.png',
+            state2_txt: '车辆与设备连接失败',
+            state2_btn: '请重试',
+            state2_btn_show: 1
           })
           clearInterval(timers);
           clearInterval(timers_s);
           clearInterval(timers_m);
-          if (that.data.con_state == 5 || that.data.con_state == 55) {
-            setTimeout(function () {
-              wx.reLaunch({
-                url: '../index/index',
-                success: function (res) { },
-                fail: function (res) { },
-                complete: function (res) { },
-              })
-            }, 1500)
-          }
-        } else if (state >= 10) {
-          that.setData({
-            dev_state: state,
-            dev_msg: response.data.msg
-          })
-          clearInterval(timers);
-          clearInterval(timers_m);
-          wx.showToast({
-            title: response.data.msg,
-            image: '../../images/cuo@2x.png',
-            duration: 2000
-          })
-          setTimeout(function(){
-            wx.reLaunch({
-              url: '../index/index',
-            })
-          },1500)
         }
-
-
-
       },
       fail: function (err) {
         console.log(err);
@@ -327,6 +285,7 @@ Page({
               xqid:data.data.xqid
             })
             var n = data.data.charge_time,h,m,s
+            console.log('创建时间：',n)
             timer_charging = setInterval(function(){
               times();
               // console.log(h,m,s)
@@ -351,7 +310,7 @@ Page({
             timers_m = setInterval(function () {
               console.log("connet", time_m)
               time_m++;
-              if (time_m > 30) {
+              if (time_m > 62) {
                 clearInterval(timers_m);
                 clearInterval(timers_s)
                 time_m = 0;
@@ -369,35 +328,58 @@ Page({
                   phone: data.data.our_phone,
                   property_phone: data.data.property_phone
                 })
-              } else if (0 < time_m <=30) {
+              } else if (0 < time_m <=62) {
                 that.connect();
               }
-            }, 2000)
+            }, 1000)
           }
       },
       fail: function (err) {
-        console.log(err);
-        wx.reLaunch({
-          url: '../index/index',
-        })
+        console.log("失败",err);
         clearInterval(timers)
         clearInterval(timers_m)
         clearInterval(timer_charging)
         clearInterval(timers_s)
+        wx.reLaunch({
+          url: '../index/index',
+        })
       }
     });
   },
   onLoad: function (options) {
     clearInterval(timers);
     clearInterval(timers_m);
-    var that = this;
-    console.log("oder_no", options.order_no, options.deviceid)
+    clearInterval(timer_charging);
+    clearInterval(timers_s)
+    clearInterval(timer_orders);
+    var that = this, order_no = '', pid = '', deviceno = '', deviceid = '';
+    console.log("充电页面", options.order_no, options.deviceid, options.state, options.pid, options.deviceno)
+    if (options.deviceid == undefined || options.deviceid == null){
+      deviceid=''
+    }else{
+      deviceid = options.deviceid
+    }
+    if (options.order_no == undefined || options.order_no == null) {
+      order_no = ''
+    } else {
+      order_no = options.order_no
+    }
+    if (options.pid == undefined || options.pid == null) {
+      pid = ''
+    } else {
+      pid = options.pid
+    }
+    if (options.deviceno == undefined || options.deviceno == null) {
+      deviceno = ''
+    } else {
+      deviceno = options.deviceno
+    }
     that.setData({
-      order_no: options.order_no,
+      order_no: order_no,
       con_state: options.state,
-      pid: options.pid,
-      device_id: options.deviceid,
-      device_no: options.deviceno,
+      pid: pid,
+      device_id:deviceid,
+      device_no: deviceno,
       
     })
     if (!app.checkNetWork.checkNetWorkStatu()) {
@@ -432,13 +414,14 @@ Page({
             connet_txt: '平台正在连接您的电动车'
           })
         }, 2800)
-        that.connect();
+      
         that.chongshi();
+        that.connect();
         var n = 1
         timers = setInterval(function () {
           console.log("onload")
           n++;
-          if (n > 30) {
+          if (n > 62) {
             clearInterval(timers);
               n = 1;
             that.setData({
@@ -448,9 +431,8 @@ Page({
           } else if (0 < n <= 30) {
             that.connect();
           }
-        }, 2000)
+        }, 1000)
       } else {
-        console.log("显示")
         that.setData({
           state0_img: '../../images/electricize/charge_1.gif',
           connet_state: 0,
@@ -477,7 +459,7 @@ Page({
             success: function (response) {
               console.log("订单状态",response)
               var order_status = response.data.data.order_status
-              if (order_status == '2') {//订单结束
+              if (order_status == '2' || order_status == '3') {//订单结束
                     that.over_btn()
                     clearInterval(timer_orders)
                 } else {//正在充电
@@ -489,9 +471,6 @@ Page({
             }
           });
     },60000)
-
-
-
     // console.log( options.pid, options.deviceid, options.deviceno)
   },
 
@@ -507,8 +486,9 @@ Page({
    */
   onShow: function () {
    this.setData({
-     state1_src: '../../images/electricize/electricize_ing.gif'
-   })
+     state1_src: '../../images/electricize/electricize_ing.gif',
+     begin_btn: true//按钮可点
+    })
   },
 
   /**
@@ -522,6 +502,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    console.log('卸载')
     clearInterval(timers);
     clearInterval(timers_m);
     clearInterval(timer_charging);

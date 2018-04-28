@@ -4,9 +4,9 @@
    
    <image class='bgimage' src='{{bgImage}}' mode="{{mode}}"></image> 
   <view class="header">
-    <view class='rule' wx:if='{{rule_state==1}}' bindtap='go_rule'>计费:月卡
+    <view class='rule' wx:if='{{rule_state==1}}' bindtap='go_charge'>计费:月卡
     </view>
-    <view class='rule' wx:if='{{rule_state==2}}'  bindtap='go_cash'>计费:{{rule_money}}元/次
+    <view class='rule' wx:if='{{rule_state==2}}'  bindtap='go_charge'>按次收费
     </view>
     <view class='xiaoqu-name'>
     <label  bindtap='changXiaoqu'>{{xqname}}</label>
@@ -21,8 +21,8 @@
       正在充电中
       <image class='charge_ing_jt' src='../../images/triangle@2x.png'></image>
     </view>
-    <view class='con-list' wx:for='{{park_list}}' data-id='{{item.pid}}' data-use='{{item.useful_num}}' bindtap='go_parkdetail'>
- 
+    <view class='con-list' wx:for='{{park_list}}' >
+      <view data-id='{{item.pid}}' data-use='{{item.useful_num}}' bindtap='go_parkdetail'>
       <view class='con-list-head'>
         <image class='loca' src='../../images/localize@2x.png'></image>
         {{item.place_name}}
@@ -36,18 +36,24 @@
             可用</label>
         </view>   
       <view class='border'></view>
-          <view class='con-list-right'>
-            <label class='num'>{{item.disable_num}}</label>
-              <label class='tit'>个</label> 
-              <label class='use'>
-              <image class='imgsize' src='../../images/in-use@2x.png'></image>
-              使用中</label>
-          </view> 
+      <view class='con-list-right'>
+        <label class='num'>{{item.disable_num}}</label>
+          <label class='tit'>个</label> 
+          <label class='use'>
+          <image class='imgsize' src='../../images/in-use@2x.png'></image>
+          使用中</label>
+      </view> 
+      </view>
       <view class='con-list-bottom' wx:if='{{item.num==0}}'>
           <label class='tit'>有空余插座通知我</label> 
-          <label class='num'>
-            <!-- <switch type='' checked bindchange="switch1Change"/>   -->
-           <template is="switch" data="{{switch_btn}}"/> 
+          <label class='num'> 
+               <switch type='' wx:key='*this' checked='{{switchChecked}}' data-pid='{{item.pid}}' bindchange="switchChange"/>  
+               
+                  
+            <!-- <view class='switchBox' bindtap='clickSwitch' data-id='{{index}}' data-sid='{{item.sid}}'> 
+              <image class='btn' src="{{switch_btn.btnsrc}}"></image>
+              <image class='round' animation="{{switch_btn.animationData}}" src="{{switch_btn.roundsrc}}"></image>
+            </view> -->
           </label>
       </view> 
       <view class='clearboth'></view>

@@ -68,13 +68,17 @@ page{
   vertical-align: middle;
   margin-top: -5rpx
 }
+.container .content .my_list:first-child{
+   border-top: 0rpx solid #e5e5e5
+}
 .container .content .my_list{
   padding-left:23rpx;
-  height: 174rpx;
+  /* height: 174rpx; */
    border-top: 1rpx solid #e5e5e5 
 }
-.container .content .my_list:first-child{
-   border-top: none
+
+.container .content .my_list.my_list_none{
+   border-top: none;
 }
 .container .content .list_left,.container .content .list_right{
   display: inline-block
@@ -147,4 +151,13 @@ page{
   color: #ffbe00;
   margin-left: 20rpx
 }
-
+.new_msg{
+  background: #f8f8f8;
+  font-size: 30rpx;
+  color: #666;
+  padding: 20rpx 30rpx;
+  margin-left: -23rpx
+}
+.weui-cell.footer_bottom{
+  border-bottom: 1rpx solid #e5e5e5
+}

@@ -62,9 +62,15 @@
 .content .list_con .time{
   margin-bottom: 20rpx
 }
+.content .list_con .money-total{
+  display: inline-block
+}
 .content .list_con .money_num{
   color: #FFA800;
   display: inline-block
+}
+.content .list_con .money_num label{
+  font-size: 28rpx;
 }
 .content .list_con .money_tit{
   float: right

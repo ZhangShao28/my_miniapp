@@ -7,6 +7,7 @@ Page({
    */
   data: {
     money:'0.00',
+    song:1,
     money_list:[],
     pages:0,
     pagenum:1,

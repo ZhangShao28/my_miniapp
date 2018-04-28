@@ -25,58 +25,109 @@ Page({
     no_electry:'../../images/electricity@3x.png',
     xq_id:'',
     deviceid:'',
-    q:''
+    q:'',
+    scan_state:2,
+    // switchChecked:false//switch开关状态
   },
   //点击switch切换状态
-  clickSwitch: function (e) {
-    var thiss = this
-    var animation = wx.createAnimation({
-      duration: 200,
-      timingFunction: 'linear',
-    })
-    this.animation = animation;
-    if (this.flag) {
-      thiss.flag = false;
-      animation.translate(0).step();
-      thiss.setData({
-        'switch_btn.btnsrc': '../../images/Turn-off@3x.png',
-        'switch_btn.animationData': animation.export()
-      })
-    } else {
+  switchChange:function(e){
+    var that = this;
+    var pid = e.currentTarget.dataset.pid, sid = e.currentTarget.dataset.sid 
+    if (e.detail.value == true) {
       wx.showModal({
         title: '提示',
         content: '确定开启短信提醒吗？',
         success: function (res) {
           if (res.confirm) {
-            thiss.flag = true
-            animation.translate(20).step();
-            thiss.setData({
-              'switch_btn.btnsrc': '../../images/button@3x.png',
-              'switch_btn.animationData': animation.export()
+            wx.showToast({
+              title: pid + '您已开启短信通知',
             })
           } else if (res.cancel) {
-            // console.log('用户点击取消')
+            that.setData({
+              switchChecked: false
+            })
           }
         }
       })
+    } else {
+      wx.showToast({
+        title: pid + '您已关闭短信通知',
+      })
 
-    }
+    } 
+
   },
+  // clickSwitch: function (e) {
+  //   console.log(e)
+  //   var thiss = this
+  //   var animation = wx.createAnimation({
+  //     duration: 200,
+  //     timingFunction: 'linear',
+  //   })
+  //   this.animation = animation;
+  //   if (this.flag) {
+  //     thiss.flag = false;
+  //     animation.translate(0).step();
+  //     thiss.setData({
+  //       'switch_btn.btnsrc': '../../images/Turn-off@3x.png',
+  //       'switch_btn.animationData': animation.export()
+  //     })
+  //   } else {
+  //     wx.showModal({
+  //       title: '提示',
+  //       content: '确定开启短信提醒吗？',
+  //       success: function (res) {
+  //         if (res.confirm) {
+  //           thiss.flag = true
+  //           animation.translate(20).step();
+  //           thiss.setData({
+  //             'switch_btn.btnsrc': '../../images/button@3x.png',
+  //             'switch_btn.animationData': animation.export()
+  //           })
+  //         } else if (res.cancel) {
+  //           // console.log('用户点击取消')
+  //         }
+  //       }
+  //     })
+
+  //   }
+  // },
   //事件处理函数
   ScanBtn:function(){
     var that = this;
-    wx.scanCode({
-      success: (res) => {
-        var scan_id = res.result.split('/')[4]
-        console.log("内部扫码", res, scan_id)
-        that.setData({
-          deviceid: scan_id
+    if (!app.checkNetWork.checkNetWorkStatu()) {
+      console.log('网络错误')
+    } else {
+      
+        wx.scanCode({
+          success: (res) => {
+            var scan_id = res.result.split('/')[4]
+            console.log("内部扫码", res, scan_id, that.data.is_bind_mobile)
+            that.setData({
+              deviceid: scan_id,
+              scan_state:1
+            })
+                if (that.data.is_bind_mobile == 'y') {
+                  wx.navigateTo({
+                    url: '../electricize/electricize?state=55&deviceid=' + scan_id,
+                  })
+                } else if (that.data.is_bind_mobile == 'n') {
+                  wx.navigateTo({
+                    url: '../bindinfo/bindinfo?state=55&deviceid=' + scan_id
+                  })
+                } else {
+                  wx.showLoading({
+                    title: '请求超时',
+                  })
+                  setTimeout(function () {
+                    wx.hideLoading()
+                  }, 1000)
+                }
+
+          }
         })
-          wx.navigateTo({
-            url: '../electricize/electricize?state=55&deviceid=' + that.data.deviceid,
-          })
-      }
-    })
+ 
+    }
   },
   Scan_Submit:function(e){
     let formId = e.detail.formId;
@@ -88,16 +139,17 @@ Page({
     }
   },
   go_myinfo:function(){
+    var that = this;
     if (!app.checkNetWork.checkNetWorkStatu()) {
       console.log('网络错误')
     } else {
-      if (this.data.is_bind_mobile == 'y') {
+      if (that.data.is_bind_mobile == 'y') {
         wx.navigateTo({
           url: '../myinfo/myinfo',
         })
-      } else if (this.data.is_bind_mobile == 'n'){
+      } else if (that.data.is_bind_mobile == 'n'){
         wx.navigateTo({
-          url: '../bindinfo/bindinfo?xqid=' + this.data.xq_id
+          url: '../bindinfo/bindinfo?m_type=1&xqid=' + that.data.xq_id
         })
       }else{
         wx.showLoading({
@@ -127,15 +179,35 @@ Page({
       })
     }
   },
-  go_rule:function(){
-    wx.navigateTo({
-      url: '../recharge/recharge?id=1&xqid=' + this.data.xq_id,
-    })
-  },
-  go_cash:function(){
-    wx.navigateTo({
-      url: '../recharge/recharge?id=2',
-    })
+  go_charge:function(){
+    var that = this;
+    if (!app.checkNetWork.checkNetWorkStatu()) {
+      console.log('网络错误')
+    } else {
+      if (that.data.is_bind_mobile == 'y') {
+        if (that.data.rule_state==1){//月卡充值
+          wx.navigateTo({
+            url: '../rechargeMonth/rechargeMonth?id=1&phone_id=1&xqid=' + that.data.xq_id,
+          })
+        } else if (that.data.rule_state == 2){//现金充值
+          wx.navigateTo({
+            url: '../rechargeCash/rechargeCash?id=2&phone_id=1&xqid=' + that.data.xq_id,
+          })
+        }
+    
+      } else if (that.data.is_bind_mobile == 'n') {
+        wx.navigateTo({
+          url: '../bindinfo/bindinfo?m_type=1&xqid=' + that.data.xq_id
+        })
+      } else {
+        wx.showLoading({
+          title: '请求超时',
+        })
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 1000)
+      }
+    }
   },
   changXiaoqu:function(){
     wx.navigateTo({
@@ -151,45 +223,56 @@ Page({
   onLoad: function (options) {
     var that = this, pid = pid, xqid = options.xqid;
     var q = decodeURIComponent(options.q)
-    var scan_id = q.split('/')[4]
-    wx.checkSession({
-      success: function () {
-        console.log("未过期")
-        //session 未过期，并且在本生命周期一直有效
-        if (options.ftype == 1) {
-          wx.navigateTo({
-            url: '../account/account?order_no=' + options.fdata,
+    var scan_id_w = q.split('/')[4]
+    wx.getSystemInfo({
+      success: function(res) {
+        if (res.version<'6.5.8'){//微信版本过低
+          wx.showModal({
+            title: '',
+            content: '微信版本过低，无法正常使用小程序，请升级微信到最新版本',
+            showCancel: false,
+            confirmText: '确定'
           })
-        } else if (options.ftype == 2) {
-          wx.navigateTo({
-            url: '../myinfo/myinfo',
-          })
-        } else {
-          that.setData({
-            deviceid: scan_id,
-            xq_id: xqid,
-            q: q
-          })
-          that.loadshow(xqid, q, scan_id)
+        }else{
+          if (scan_id_w == undefined || scan_id_w == null) {
+            scan_id_w = '';
+          }
+          if (xqid == undefined || xqid == null) {
+            xqid = '';
+          }
+          if (options.ftype == 1) {
+            wx.navigateTo({
+              url: '../account/account?order_no=' + options.fdata,
+            })
+          } else if (options.ftype == 2) {
+            wx.navigateTo({
+              url: '../myinfo/myinfo',
+            })
+          } else {
+            that.setData({
+              deviceid: scan_id_w,
+              xq_id: xqid,
+              q: q
+            })
+            that.loadshow(xqid, q, scan_id_w)
+          }
         }
       },
-      fail: function () {
-        console.log("登录态过期")
-        //登录态过期
-        wx.reLaunch({
-          url: './index',
-        })
-      }
     })
-    // console.log(options)
-
-
   },
   loadshow: function (xq_id, q, scan_id){
     wx.showLoading({
       title: '加载中',
     })
-    var that = this;
+    var that = this, flag;
+    if (wx.getStorageSync('loc')) {//判断是否授权
+      // console.log(wx.getStorageSync('key'))
+      if (wx.getStorageSync(app.sid)) {
+        flag = 0
+      } else {
+        flag = 1
+      }
+      // flag = wx.getStorageSync(app.sid)?'0':'1'
     // 获取经纬度
     wx.getLocation({
       type: 'wgs84',
@@ -208,6 +291,7 @@ Page({
             lat: res.latitude,
             xqid: xq_id
           },
+          login: flag,
           method: 'POST',
           header: { 'content-type': 'application/x-www-form-urlencoded' },
           success: function (response) {
@@ -217,6 +301,10 @@ Page({
             wx.hideLoading()
             var list = response.data.data;
             console.log(response, "xq_id", list.xqid);
+            console.log("q",q)
+            if (q == null){
+              q = 'undefined'
+            }
             if (q != 'undefined'&& list.is_bind_mobile != 'n') {//微信扫码充电跳转充电确认页面
               that.setData({
                 is_bind_mobile: list.is_bind_mobile
@@ -239,7 +327,11 @@ Page({
               wx.navigateTo({
                 url: '../electricize/electricize?state=5&deviceid=' + scan_id,
               })
-            } else {//直接进入首页
+            } else if (q != 'undefined' && list.is_bind_mobile == 'n'){//扫码充电未绑定手机号跳转手机号绑定zxc
+                wx.navigateTo({
+                  url: '../bindinfo/bindinfo?state=5&deviceid=' + scan_id,
+                })//zxc
+            }else {//直接进入首页
               if (list.is_charging=="y"){
                   that.setData({
                     charging_img: 1
@@ -283,19 +375,67 @@ Page({
             })
           }
         });
+      },
+      fail: function (err) {
+        wx.hideLoading();
+        // wx.showModal({
+        //   title: '',
+        //   content: '请打开手机的定位功能',
+        //   showCancel: false,
+        //   confirmText: '关闭'
+        // })
+        wx.showModal({
+          title: '定位失败',
+          content: '未获取到您的地理位置,暂时无法为您提供服务,请在手机设置中打开定位功能',
+          showCancel: false,
+          confirmText: '知道了',
+          success: function (res) {
+            // if (res.confirm) {
+            //   wx.openSetting({
+            //     success: function (res) {
+            //       //尝试再次定位
+            //       that.loadshow();
+            //     }
+            //   })
+            // }
+          }
+        })
       }
     })
+    }else{
+      console.log("登陆失效")
+    }
   },
   onReady: function () {
 
   },
   onShow:function(){
-    var xq_id = "", q = 'undefined', scan_id = '';
-    if (!app.checkNetWork.checkNetWorkStatu()) {
-      console.log('网络错误')
-    }else{
-      this.loadshow(this.data.xq_id, q, scan_id);
-    }
+    var that = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        if (res.version < '6.5.8') {//微信版本过低
+          wx.showModal({
+            title: '',
+            content: '微信版本过低，无法正常使用小程序，请升级微信到最新版本',
+            showCancel: false,
+            confirmText: '确定'
+          })
+        }else{
+          if (that.data.scan_state == 1) {
+
+          } else {
+            var xq_id = "", q = 'undefined', scan_id = '';
+            if (!app.checkNetWork.checkNetWorkStatu()) {
+              console.log('网络错误')
+            } else {
+              that.loadshow(that.data.xq_id, q, scan_id);
+            }
+          }
+        }
+      },
+    })
+  
+
   },
   onPullDownRefresh:function(){
     var xq_id="", q = 'undefined', scan_id='';

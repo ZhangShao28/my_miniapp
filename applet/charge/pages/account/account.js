@@ -13,16 +13,9 @@ Page({
       state:'',   //1为月卡结算，2为现金结算
   },
   go_recharge:function(e){
-    console.log(e)
-    if (e.currentTarget.dataset.txt=='完成'){
-      wx.reLaunch({
-          url: '../index/index',
-        })
-      }else{
-        wx.redirectTo({
-          url: '../recharge/recharge?id=' + this.data.state + '&xqid=' + this.data.xqid,
-        })
-      }
+    wx.reLaunch({
+      url: '../index/index',
+    })
       
   },
   /**
@@ -30,13 +23,10 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    // console.log(this.data.state)
-
     app.qcloud.request({
       url: app.config.service.hostUrl + 'charging/finished',
       data: {
-        order_no: options.order_no,
-        // order_no:'CD20171207114623851961',
+        order_no: options.order_no
       },
       method: 'POST',
       header: { 'content-type': 'application/x-www-form-urlencoded' },
@@ -52,18 +42,13 @@ Page({
             hour: data.hour,
             minute: data.minute,
             second: data.second,
-            num: data.remain_day,
+            pay_money: data.remain_day,
             xqid:data.xqid
           })
-          if (data.remain_day<1){
-            that.setData({
-              btn_txt: '去续费'
-            })
-          }
         } else if (data.state == 2){// 次数充电
           that.setData({
             end_tit: '元',
-            end_tits: '余额',
+            end_tits: '本次支付',
             state: data.state,
             hour: data.hour,
             minute: data.minute,
@@ -72,11 +57,6 @@ Page({
             pay_money: data.pay_money,
             xqid: data.xqid
           })
-          if (data.u_balance_money < data.pay_money){
-                that.setData({
-                  btn_txt:'去续费'
-                })
-          }
         }
           
 
@@ -85,13 +65,6 @@ Page({
         console.log(err);
       }
     });
-
-    if (this.data.state == 2) {
-      thiss.setData({
-        end_tit: '元',
-        end_tits: '余额'
-      })
-    }
   },
 
   /**

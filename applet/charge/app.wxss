@@ -14,6 +14,12 @@
 .clearboth{
   clear: both;
 }
+.float_r{
+  float: right
+}
+.float_l{
+  float: left
+}
 .btn{
   background: #ffbe00;
   height: 100rpx;

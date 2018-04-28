@@ -1,22 +1,22 @@
 {
-  "pages": [  
+  "pages": [
     "pages/index/index",
     "pages/logs/logs",
     "pages/switch/switch",
     "pages/plotselect/plotselect",
     "pages/parkdetail/parkdetail",
-    "pages/recharge/recharge",
     "pages/account/account",
     "pages/electricize/electricize",
     "pages/myrechargelog/myrechargelog",
     "pages/myinfo/myinfo",
     "pages/bindinfo/bindinfo",
     "pages/wallet/wallet",
- 
     "pages/rule/rule",
     "pages/repair/repair",
     "pages/chargeRule/chargeRule",
-    "pages/protocol/protocol"
+    "pages/protocol/protocol",
+    "pages/rechargeCash/rechargeCash",
+    "pages/rechargeMonth/rechargeMonth"
   ],
   "window": {
     "backgroundTextStyle": "dark",

@@ -26,7 +26,8 @@
   margin: 0 auto;
 }
 .content .charge_list{
-  width: 235rpx;
+  /* width: 235rpx; */
+  width:33%;
   height: 230rpx;
   border-bottom: 1rpx solid #e5e5e5;
   float: left
