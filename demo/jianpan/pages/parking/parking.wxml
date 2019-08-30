@@ -1,0 +1,13 @@
+<view class="page" scroll-y='true' scroll-top='0'>
+  <view class="nowdate">
+    <text>刷新时间：</text>
+    {{freDate}}
+  </view>
+  <view class="title">
+    <view class="title_area">{{parkingSite}}</view>
+    <view class="title_now">当前剩余车位</view>
+    <view class="paiking_num">
+      {{parkingNum}}
+    </view>
+  </view>
+</view>

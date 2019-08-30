@@ -1,0 +1,15 @@
+<!--pages/plotselect/plotselect.wxml-->
+<view class='container'>
+  <view class='content'>
+    <view class='header'>
+      <image class='loactionImg' src='../../images/localize@3x.png'></image>
+      <view class='xq_name'>{{xq_name}}</view>
+    </view>
+    <view class='xq_list' wx:for="{{arrylist}}">
+      <view class='list_item'>
+        {{item}}
+      </view>
+    </view>
+  </view>
+</view>
+

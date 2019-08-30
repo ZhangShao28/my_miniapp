@@ -1,0 +1,95 @@
+<!--index.wxml-->
+  <view class='msg msg_ing' wx:if='{{bind==1}}'>
+    <view class='msg_tit'>{{msg_tit}}</view>
+    <navigator url='{{msg_src}}' open-type='navigateTo'>
+      <view class='msg_btn'>{{msg_btn}}</view>
+    </navigator>
+  </view>
+ <view class='container'>
+      <block wx:if='{{is_no==1}}'>
+          <view class='header {{bind==1?"margin_top_120":""}}' >
+            <view class='park' bindtap='go_park' id='{{pid}}'>
+              <!-- <image class='loc' src='../../images/loac@2x.png'></image> -->
+              {{p_city}}.{{park_place}}
+              <image class='sanjiao' src='../../images/nabla@2x.png'></image>
+            </view>
+            <view class='map' bindtap='go_map'>
+              <label></label>
+                <image class='loc' src='../../images/loc@2x.png'></image>
+            </view>
+              
+          </view>
+       
+          <view class='content'>
+            <view class='con_top'>
+              <!-- <view class='tit'>
+              <text wx:if='{{tit_state==0}}'>您的车开到停车场门口后\n将会自动放行</text>
+              <text wx:else>正在识别您的车牌号....\n大门即将打开</text>
+              </view> -->
+              <image class='logo' src='../../images/parking@2x.png'></image>
+            </view>
+            <view class='con_bottom'>
+
+      <view class='li_list'>
+                    <view wx:for='{{li_item}}' class='{{item.border? "border_t_m":""}}'>
+                        <view class='li_item' bindtap='select_item' data-id='{{index}}'>
+                            {{item.title}}
+                                <label class='time_tit' wx:if='{{time_tit_state}}'>{{item.time_tit}}</label>
+                                <image class='sanjiao {{item.flag? "sanjiao_open":""}}' src='../../images/sanjiao@2x.png' wx:if='{{item.chewei!=true}}'></image>
+                                <label class='chewei' wx:else>{{num}}<label class='ge'>个</label></label> 
+                        </view>
+
+                        <view class='li_item_content {{item.flag? "li_item_show":""}}' wx:if='{{item.state==0}}'>
+                        
+                        </view>
+                        <view class='li_item_content open_time {{item.flag? "li_item_show":""}}' wx:if='{{item.state==1}}'>
+                              <view class='time_list'>
+                                <!-- <label>{{item.week}}</label> <label class='times'>{{item.days}}</label> -->
+                                <label>{{open_time}}</label>
+                              </view>
+                        </view>
+                        <view class='li_item_content charge_rule  {{item.flag? "li_item_show":""}}' wx:if='{{item.state==2}}'>
+                              <view class='rule_top'>
+                                    收费规则
+                              </view>
+                              <view class='rule_list' wx:for='{{rule_list}}'>
+                                  <label class='left'>
+                                    {{item.times}}<label class='yuan'>(含)</label> 
+                                  </label>
+                                  <label class='right'>
+                                    {{item.money}}元
+                                  </label>
+                              </view>
+                              <view class='rule_tit'>
+                                  <view class='txt'><label class='dot'> <image src='../../images/dot1@2x.png'></image></label>进入停车场，15分钟内离场不收费，15分钟后开始计费。</view>
+                                  <view class='txt'><label class='dot'><image src='../../images/dot1@2x.png'></image></label>缴费成功后15分钟内离开停车场，若未离场将会产生新的停车费。</view>
+                                  <view class='txt'><label class='dot'><image src='../../images/dot1@2x.png'></image></label>开放时间结束后，请按时离开停车场，超时后，停车费按2倍收取。</view>
+                                  <view class='txt'><label class='dot'><image src='../../images/dot1@2x.png'></image></label>每24小时重新累积计费。</view>
+                              </view>
+                        </view>
+                    </view>
+              
+                  </view> 
+
+            </view>
+          </view>
+        </block>
+        <block wx:if='{{is_no==0}}'>
+            <view class='headers {{bind==1?"margin_top_220":""}}' bindtap='go_park'>{{park_place}}
+              <image class='sanjiao' src='../../images/nabla@3x.png'></image>
+            </view>
+              <view class='contents'>
+                您当前区域附近没有共享停车场
+              </view>
+        </block>
+      <view class='footer'>
+           <label bindtap='go_helpinfo'>道闸未开怎么办？</label> 
+                <view class='my_info'>
+                  <form bindsubmit='formSubmit' report-submit='true'>
+                    <image class='my_icon' src='../../images/mine@2x.png'></image>
+                    <button class="btn_none" form-type="submit" hover-class="none"  bindtap='go_myinfo'></button>
+                  </form>
+                  <image wx:if='{{my_dot=="1"}}' class='dot' src='../../images/dot@3x.png'></image>
+                </view>
+      </view>
+</view>

@@ -1,0 +1,49 @@
+<!--pages/myrechargelog/myrechargelog.wxml-->
+<view class='container'>
+  <view class='header'>
+    <image class='nav_bg' src='../../images/myinfo/Nav-Bar@3x.png'></image>
+      <view class='recharge_icon'>
+       <image src='../../images/myinfo/charging@3x.png'></image> 
+      </view>
+  </view>
+  <view class='content'>
+    <view class='total'>
+      <view class='total_tit'>累计充电</view>
+      <view class='total_time'>{{hour}}<label>小时</label>{{minute}}<label>分</label></view>
+    </view>
+    <view wx:for='{{rechargelog}}'>
+        <view class='recharge_ing' bindtap='go_rechargedetail' wx:if='{{item.status == 1}}'>
+              <view class='begin_time'>
+              <view>开始充电时间：
+               <!-- <label>9月20</label>\t<label>17：20：00</label> -->
+               {{item.create_time}}
+               </view>
+              <image src='../../images/myinfo/Line-of-the-triangle@3x.png'></image>
+            </view>  
+            <view class='begin_content'>
+              <view class='car_name'>{{item.xq_name}}</view>
+              <view class='num'>{{item.place_name}} <view class='tit'>正在充电中</view></view>
+             
+            </view>
+        </view>
+        <view class='recharge_ing' wx:if='{{item.status == 2}}'>
+          <view class='begin_time end_time'>
+            <view>开始充电时间： 
+            <!-- <label>9月20</label>\t<label> 17：20：00</label> -->
+             {{item.create_time}}
+            </view>
+            <view>结束充电时间： 
+            <!-- <label>9月20</label>\t<label>17：20：00</label> -->
+             {{item.end_time}}
+            </view>
+            <!-- <image src='../../images/myinfo/Line-of-the-triangle@3x.png'></image> -->
+          </view> 
+          <view class='begin_content'>
+            <view class='car_name'>{{item.xq_name}}</view>
+              <view class='num'>{{item.place_name}}<view class='tit tit_end'>已结束</view></view>
+            
+          </view>
+        </view>
+    </view>
+  </view>
+</view>

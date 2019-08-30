@@ -1,0 +1,45 @@
+<!--pages/parkdetail/parkdetail.wxml-->
+<view class='container'>
+  <view class='header'>
+    <image class='loactionImg' src='../../images/localize@3x.png'></image>
+    <view class='park_name'>{{park_name}}</view>
+  </view>
+  <view class='content'>
+    <view class='charge_list' bindtap='select_item' wx:for='{{chargelist}}' wx:key='{{index}}' data-id='{{index}}' id='{{item.use_status}}' data-device_id='{{item.device_id}}' data-device_no='{{item.device_no}}'>
+      <view class='num'>{{item.device_no}}</view>
+       <block  wx:if='{{index == select_id}}'>
+          <block wx:if='{{item.use_status == 1}}' >
+            <image class='select_charge' src='{{select_charge}}'></image>
+            <view class='state' style='color:{{select_colors}}'>{{state_no}}</view>
+          </block>
+          <!-- <block wx:elif='{{item.use_status == 2}}'>
+          <image class='select_charge' src='{{charge}}'></image>
+          <view class='state' style='color:{{colors}}'>{{state_use}}</view>
+          </block>
+          <block wx:elif='{{item.use_status == 3}}'>
+          <image class='select_charge' src='{{charge}}'></image>
+          <view class='state' style='color:{{colors}}'>{{state_gz}}</view>
+          </block> -->
+      </block>
+       <block  wx:else>
+            <block wx:if='{{item.use_status == 1}}' >
+            <image class='select_charge' src='{{charge_use}}'></image>
+            <view class='state' style='color:{{colors_use}}'>{{state_no}}</view>
+          </block>
+          <block wx:elif='{{item.use_status == 2}}'>
+          <image class='select_charge' src='{{charge}}'></image>
+          <view class='state' style='color:{{colors}}'>{{state_use}}</view>
+          </block>
+          <block wx:elif='{{item.use_status == 3}}'>
+          <image class='select_charge' src='{{charge}}'></image>
+          <view class='state' style='color:{{colors}}'>{{state_gz}}</view>
+          </block>
+      </block>
+    </view>
+  </view>
+  <view class='footer'>
+    <view>
+        <image bindtap='begin_btn' class='begin_btn' src='{{begin_src}}'></image>
+    </view>
+  </view> 
+</view>

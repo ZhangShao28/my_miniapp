@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/keyboard/keyboard",
+    "pages/payment/payment",
+    "pages/parking/parking"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "查询停车费",
+    "backgroundColor": "#ffffff",
+    "enablePullDownRefresh": true,
+    "navigationBarTextStyle": "white"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

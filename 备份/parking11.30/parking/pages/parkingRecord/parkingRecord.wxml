@@ -1,0 +1,32 @@
+<!--pages/parkingRecord/parkingRecord.wxml-->
+<view class='container'>
+  <view class='content' wx:if='{{parking_state==1}}'>
+    <view class='parkRecord_list' bindtap='go_parkdetail' data-state='{{item.order_status}}' data-id='{{item.id}}'  wx:for='{{parkRecord_list}}'>
+          <view class='car_num'>
+               <image src='../../images/dot@3x.png'></image>
+              <label class='num'>{{item.plate_number}}</label>
+          </view>
+          <view class='in_time'>
+              <label class='tit'>入场时间</label>
+              <label class='times'>{{item.create_time}}</label>
+          </view>
+          <view class='xq_name'>
+                <view class='left'>
+                    <label class='tit'>{{item.place_name}}</label>
+                </view>
+                <view class='right' wx:if='{{item.order_status=="1"}}'>
+                    <label class='parking'>正在停车中</label>
+                </view>
+                 <view class='right' wx:else>
+                    <label class='tit'>停车费:</label>
+                    <label class='tit_color'><label class='num'>{{item.pay_money}}</label><label class='yuan'>元</label></label>
+                </view>
+          </view>
+    </view>
+  </view>
+  <view class='contents' wx:else>
+      暂无停车记录
+  </view>
+    <view class="loading" hidden="{{!Loading}}">正在载入更多...</view>  
+    <view class="loading complete" hidden="{{!LoadingComplete}}">已加载全部</view>  
+</view>

@@ -1,0 +1,124 @@
+/* pages/parkingCar/parkingCar.wxss */
+.header{
+  height: 266rpx;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0rpx 2rpx 4rpx #e5e5e5;
+}
+.content{
+  height: 260rpx;
+  background: #fff;
+  text-align: center;
+  margin-top: 20rpx;
+  box-shadow: 0rpx 2rpx 4rpx #e5e5e5;
+}
+.footer{
+  background: #fff;
+  text-align: center;
+  margin-top: 20rpx
+}
+.my_line{
+  width: 385rpx;
+  border-top: 1rpx solid #e5e5e5;
+  margin: 70rpx auto 0 auto
+}
+.my_tit{
+  font-size: 28rpx;
+  color: #666;
+  width: 170rpx;
+  margin: -24rpx auto;
+  background: #fff
+}
+.header .in_time{
+  font-size: 50rpx;
+  margin-top: 40rpx;
+  margin-bottom: 20rpx
+}
+.content .park_time{
+  font-size: 80rpx;
+  color: #FFA800;
+  margin-top: 30rpx;
+  letter-spacing: 10rpx
+}
+.footer .park_money{
+  font-size: 90rpx;
+  color: #FFA800;
+  margin-top: 30rpx;
+}
+.footer .park_money .overtime{
+  width: 54rpx;
+
+  font-size: 90rpx;
+  color: #FFA800;
+  margin-top: 30rpx
+}
+.footer .park_money .overtime{
+  width: 54rpx;
+  height: 25rpx;
+  position: relative;
+  top: -50rpx;
+  left: -5rpx
+
+}
+.footer .park_money .yuan{
+  font-size: 32rpx;
+}
+.footer .park_tit{
+  font-size: 24rpx;
+  color: #999;
+}
+.footer .rule{
+  font-size: 28rpx;
+  color: #FFA800;
+  text-align: right;
+  margin: 30rpx 46rpx 20rpx auto
+}
+.footer .rule image{
+  width: 15rpx;
+  height: 24rpx;
+}
+.footer .kefu_icon{
+  width: 31rpx;
+  height: 33rpx;
+  vertical-align: middle
+}
+.footer .kefu{
+  width: 260rpx;
+  font-size: 28rpx;
+  color: #999;
+  margin: 40rpx auto 6rpx auto;
+  text-align: center;
+}
+.footer .no_time{
+  font-size: 24rpx;
+  color: #999;
+  width: 150rpx;
+  position: relative;
+  top: 10rpx;
+  right:46rpx;
+   float: right;
+  /*margin-right: 46rpx;
+  margin-top: 40rpx; */
+}
+.car_list{
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 36rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+  box-shadow: 0rpx 2rpx 4rpx #e5e5e5;
+}
+.car_list .car_num,.car_list .car_btn{
+  display: inline-block;
+  font-size: 34rpx
+}
+.car_list .car_btn{
+  color: #ffa800;
+  float: right;
+}
+.car_list .car_btn image{
+  width: 15rpx;
+  height: 26rpx;
+}

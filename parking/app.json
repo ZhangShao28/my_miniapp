@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/parkingRecord/parkingRecord",
+    "pages/parkingDetail/parkingDetail",
+    "pages/bindCarinfo/bindCarinfo",
+    "pages/bindcarnum/bindcarnum",
+    "pages/myinfo/myinfo",
+    "pages/myCar/myCar",
+    "pages/parkingCar/parkingCar",
+    "pages/payment/payment",
+    "pages/helpinfo/helpinfo",
+    "pages/selectPark/selectPark",
+    "pages/wallet/wallet",
+    "pages/chargeRule/chargeRule",
+    "pages/protocol/protocol"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#21242c",
+    "navigationBarTitleText": "首页",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": 50,
+    "backgroundColor": "#ffffff"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false,
+  "sitemapLocation": "sitemap.json"
+}

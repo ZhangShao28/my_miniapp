@@ -1,0 +1,55 @@
+/**app.wxss**/
+@import 'weui.wxss';
+.container {
+  height: 100%;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: space-between; */
+  /* padding: 200rpx 0; */
+  box-sizing: border-box;
+  font-family: PingFanSC-Medium;
+}
+.clearboth{
+  clear: both;
+}
+page{
+  height: 100%; 
+  background: #f3f3f3;
+}
+.footer .btn{
+  width: 663rpx;
+  height: 99rpx;
+  margin: 0 auto;
+  display: block;
+}
+.button{
+  width: 663rpx;
+  height: 99rpx;
+  font-size: 36rpx;
+  line-height: 99rpx;
+  border-radius: 6rpx;
+  margin: 0 auto;
+  color: #fff;
+  background: #caced4;
+  text-align: center;
+
+}
+.button_btn{
+  background: #FFA800;
+}
+button::after{
+  border: none
+}
+button[disabled][type="default"], wx-button[disabled]:not([type]) {
+color:#fff;
+background-color:#caced4;
+
+}
+.loading{
+  text-align: center;
+  padding-bottom: 20rpx;
+  font-size: 30rpx;
+  color: #666
+}
